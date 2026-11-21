@@ -25,7 +25,13 @@
     </style>
   </head>
 
-  <body>
+  <body><div id="zik-splash" style="position:fixed;inset:0;background:#0b0d12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:9999;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif">
+<div style="font-size:44px;font-weight:800;color:#ff5c8a;letter-spacing:2px">ZIK</div>
+<div style="font-size:14px;color:#9aa1b2">פחות החלקות, יותר דייטים אמיתיים</div>
+<div style="width:34px;height:34px;border:3px solid #232838;border-top-color:#ff5c8a;border-radius:50%;animation:zikspin .8s linear infinite"></div>
+</div>
+<style>@keyframes zikspin{to{transform:rotate(360deg)}}</style>
+<script>(function(){var r=document.getElementById('root');if(!r)return;var o=new MutationObserver(function(){if(r.childElementCount>0){var s=document.getElementById('zik-splash');if(s){s.style.transition='opacity .25s';s.style.opacity='0';setTimeout(function(){s.remove()},260);}o.disconnect();}});o.observe(r,{childList:true});})();</script>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
     <noscript>
       You need to enable JavaScript to run this app.
