@@ -34,10 +34,10 @@
 <script>(function(){var r=document.getElementById('root');if(!r)return;var o=new MutationObserver(function(){if(r.childElementCount>0){var s=document.getElementById('zik-splash');if(s){s.style.transition='opacity .25s';s.style.opacity='0';setTimeout(function(){s.remove()},260);}o.disconnect();}});o.observe(r,{childList:true});})();</script>
 <script>(function(){
 // Browser capability probe (ES5-only so it runs even on old engines)
-function probe(){var ok={};try{ok.oc=(0,eval)('({a:1})?.a !== undefined')||((0,eval)('1?.x'))===undefined;}catch(e){ok.oc=false;}
-try{ok.crypto=!!(window.crypto&&window.crypto.subtle);}catch(e){ok.crypto=false;}
-try{ok.es2020=(0,eval)('[...(function(){yield 1})()].length')===1;}catch(e){ok.es2020=false;}
-var bad=[];if(!ok.oc)bad.push('optional-chaining');if(!ok.crypto)bad.push('WebCrypto');if(!ok.es2020)bad.push('ES2018+');
+function probe(){var bad=[];
+try{ (0,eval)('1?.x'); }catch(e){ bad.push('optional-chaining'); }
+try{ (0,eval)('0??1'); }catch(e){ bad.push('nullish-coalescing'); }
+try{ if(!(window.crypto&&window.crypto.subtle)) bad.push('WebCrypto'); }catch(e){ bad.push('WebCrypto'); }
 if(bad.length){show('דפדפן ישן מדי — חסר: '+bad.join(', ')+'. עדכן דפדפן או פתח ב-Chrome.');}
 }
 function show(msg){
