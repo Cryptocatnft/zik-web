@@ -31,7 +31,7 @@
 <div style="width:34px;height:34px;border:3px solid #232838;border-top-color:#ff5c8a;border-radius:50%;animation:zikspin .8s linear infinite"></div>
 </div>
 <style>@keyframes zikspin{to{transform:rotate(360deg)}}</style>
-<script>(function(){var r=document.getElementById('root');if(!r)return;var o=new MutationObserver(function(){if(r.childElementCount>0){var s=document.getElementById('zik-splash');if(s){s.style.transition='opacity .25s';s.style.opacity='0';setTimeout(function(){s.remove()},260);}o.disconnect();}});o.observe(r,{childList:true});})();</script>
+<script>(function(){var t=setInterval(function(){var r=document.getElementById('root');if(r&&r.childElementCount>0){clearInterval(t);var s=document.getElementById('zik-splash');if(s){s.style.transition='opacity .25s';s.style.opacity='0';setTimeout(function(){s.remove()},260);}}},120);})();</script>
 <script>(function(){
 // Browser capability probe (ES5-only so it runs even on old engines)
 function probe(){var bad=[];
