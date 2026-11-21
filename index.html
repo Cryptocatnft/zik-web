@@ -32,6 +32,25 @@
 </div>
 <style>@keyframes zikspin{to{transform:rotate(360deg)}}</style>
 <script>(function(){var r=document.getElementById('root');if(!r)return;var o=new MutationObserver(function(){if(r.childElementCount>0){var s=document.getElementById('zik-splash');if(s){s.style.transition='opacity .25s';s.style.opacity='0';setTimeout(function(){s.remove()},260);}o.disconnect();}});o.observe(r,{childList:true});})();</script>
+<script>(function(){
+// Browser capability probe (ES5-only so it runs even on old engines)
+function probe(){var ok={};try{ok.oc=(0,eval)('({a:1})?.a !== undefined')||((0,eval)('1?.x'))===undefined;}catch(e){ok.oc=false;}
+try{ok.crypto=!!(window.crypto&&window.crypto.subtle);}catch(e){ok.crypto=false;}
+try{ok.es2020=(0,eval)('[...(function(){yield 1})()].length')===1;}catch(e){ok.es2020=false;}
+var bad=[];if(!ok.oc)bad.push('optional-chaining');if(!ok.crypto)bad.push('WebCrypto');if(!ok.es2020)bad.push('ES2018+');
+if(bad.length){show('דפדפן ישן מדי — חסר: '+bad.join(', ')+'. עדכן דפדפן או פתח ב-Chrome.');}
+}
+function show(msg){
+  var d=document.getElementById('zik-err');
+  if(!d){d=document.createElement('div');d.id='zik-err';d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:10000;background:#3a0d18;color:#ffd7de;border:1px solid #ff5c8a;border-radius:10px;padding:10px;font:12px/1.5 monospace;direction:rtl;text-align:right;max-height:45%;overflow:auto;white-space:pre-wrap';(document.body||document.documentElement).appendChild(d);}
+  var p=document.createElement('div');p.textContent='⚠ '+(msg||'unknown');d.appendChild(p);
+  var s=document.getElementById('zik-splash');if(s){s.style.display='none';}
+}
+window.showZikError=show;
+window.addEventListener('error',function(e){show((e.message||'error')+' @ '+(e.filename||'').split('/').pop()+':'+(e.lineno||'?'));});
+window.addEventListener('unhandledrejection',function(e){show('promise: '+(e.reason&&(e.reason.message||e.reason)));});
+probe();
+})();</script>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
     <noscript>
       You need to enable JavaScript to run this app.
